@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
- #[ORM\Entity(repositoryClass: OfferProductTypeRepository::class)]
+#[ORM\Entity(repositoryClass: OfferProductTypeRepository::class)]
 
 class OfferProductType
 {
@@ -54,33 +54,33 @@ class OfferProductType
         return $this;
     }
 
-  /*  public function getProductTypeidProductType(): ?ProductType
+    /*  public function getProductTypeidProductType(): ?ProductType
+      {
+          return $this->productType;
+      }
+
+      public function setProductTypeidProductType(?ProductType $productType): self
+      {
+          $this->productType = $productType;
+
+          return $this;
+      }*/
+
+
+    public function getProductType(): ?ProductType
     {
         return $this->productType;
     }
 
-    public function setProductTypeidProductType(?ProductType $productType): self
+    public function setProductType( ?ProductType $productType): self
     {
         $this->productType = $productType;
 
         return $this;
-    }*/
+    }
 
 
-     public function getProductType(): ?ProductType
-     {
-         return $this->productType;
-     }
-
-     public function setProductType( ?ProductType $productType): self
-     {
-         $this->productType = $productType;
-
-         return $this;
-     }
-
-
-     public function getMaxItems(): ?string
+    public function getMaxItems(): ?string
     {
         return $this->maxItems;
     }
@@ -103,13 +103,13 @@ class OfferProductType
 
         return $this;
     }
-     public function __toString(): string
-     {
-         $m = "*".'product type: '. $this->getProductType()->getName()."\n".
-             'max items: '.$this->getMaxItems()."\r\n".
-             'price'.$this->getPrice()."\r\n";
+    public function __toString(): string
+    {
+        $m = "*".'product type: '. $this->getProductType()->getName()."\n".
+            'max items: '.$this->getMaxItems()."\r\n".
+            'price'.$this->getPrice()."\r\n";
 
-         return $m;
-         // TODO: Implement __toString() method.
-     }
+        return $m;
+        // TODO: Implement __toString() method.
+    }
 }

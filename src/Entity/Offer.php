@@ -37,7 +37,10 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: SellerOffer::class, cascade: ['persist','remove'])]
     #[Groups(['offer'])]
     private Collection $sellerOffers;
-
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $totalPrice;
     public function __construct()
     {
         $this->offerProductTypes = new ArrayCollection();
@@ -88,11 +91,11 @@ class Offer
     public function addOfferProductType(OfferProductType $offerProductType): self
     {
         if (!$this->offerProductTypes->contains($offerProductType)) {
-           //added in 3/03/2023
+            //added in 3/03/2023
             /* $offerProductType->setOffer($this);
              $this->offerProductTypes[] = $offerProductType;*/
-           $this->offerProductTypes->add($offerProductType);
-             $offerProductType->setOffer($this);
+            $this->offerProductTypes->add($offerProductType);
+            $offerProductType->setOffer($this);
         }
 
         return $this;
@@ -139,18 +142,43 @@ class Offer
 
         return $this;
     }
+    public function getTotalPrice(): ?float
+    {
+        return $this->totalPrice;
+    }
+
+    public function setTotalPrice(?float $totalPrice): self
+    {
+        $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    public function calculateTotalPrice(): self
+    {
+        $totalPrice = 0;
+
+        foreach ($this->getOfferProductTypes() as $offerProductType) {
+            $totalPrice += $offerProductType->getPrice();
+        }
+
+        $this->setTotalPrice($totalPrice);
+
+        return $this;
+    }
+
     public function __toString(): string
     {
         // TODO: Implement __toString() method.
         return $this->name;
     }
     //ajouter la méthode de la date de l'Api
-   /* public function getEndDate(): \DateTime
-    {
-        $endDate = clone $this->
-        $endDate->add(new \DateInterval('P' . $this->getNbDays() . 'D'));
-        return $endDate;
-    }*/
+    /* public function getEndDate(): \DateTime
+     {
+         $endDate = clone $this->
+         $endDate->add(new \DateInterval('P' . $this->getNbDays() . 'D'));
+         return $endDate;
+     }*/
 
     //end method
 }

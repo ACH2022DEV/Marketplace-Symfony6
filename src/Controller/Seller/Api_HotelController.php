@@ -86,7 +86,7 @@ class Api_HotelController extends AbstractController
                 $productTypeMaxItems = $productType['maxItems'];
                 if($productTypeName=='hotels'){
                     $url = $baseUrl . '?' . http_build_query(['product' => $productTypeName]);
-                  //  $url=$baseUrl;
+                    //  $url=$baseUrl;
                     $requests[] = new Request('POST', $url, [
                         'Content-Type' => 'application/json',
                         'api-key' => $apiKeyValue,
@@ -110,18 +110,18 @@ class Api_HotelController extends AbstractController
             'concurrency' => 10, // Nombre maximal de requêtes en parallèle
             'fulfilled' => function ($response, $index) use (&$hotels,$sellersValides) {
 
-               $seller = $sellersValides[$index];
-               // dd($seller);
+                $seller = $sellersValides[$index];
+                // dd($seller);
                 $data = json_decode($response->getBody()->getContents(), true);
-              //  $hotels[] = $data['response'];
-               // dd($hotels);
+                //  $hotels[] = $data['response'];
+                // dd($hotels);
                 //premiére methode
-               foreach ($data['response'] as $dataIndex) {
+                foreach ($data['response'] as $dataIndex) {
                     $hotel = $dataIndex;
                     // Vérifier si l'hôtel existe déjà dans le tableau des hôtels
                     if (isset($hotels[$hotel['hotelName']])) {
-                      //  $hotels[$hotel['hotelName']][] =  $seller['seller'];
-                       // $hotels[$hotel['hotelName']]['seller'][] = ['seller'=>$seller['seller'],'hotelSeller'=>$hotel['lowPrice']];
+                        //  $hotels[$hotel['hotelName']][] =  $seller['seller'];
+                        // $hotels[$hotel['hotelName']]['seller'][] = ['seller'=>$seller['seller'],'hotelSeller'=>$hotel['lowPrice']];
                         $hotels[$hotel['hotelName']]['sellers'][] = [
                             'sellerData' => $seller['seller'],
                             'PrixSeller' => $hotel['lowPrice'],
@@ -130,7 +130,7 @@ class Api_HotelController extends AbstractController
 
                         // Ajouter le vendeur à l'hôtel existant
                     } else {
-                      //  $hotels[$hotel['hotelName']] = ['hotel'=>$hotel ,'seller'=>['seller'=>$seller['seller'],'hotelSeller'=>$hotel['lowPrice']]];
+                        //  $hotels[$hotel['hotelName']] = ['hotel'=>$hotel ,'seller'=>['seller'=>$seller['seller'],'hotelSeller'=>$hotel['lowPrice']]];
                         $hotels[$hotel['hotelName']] = [
                             'hotel' => $hotel,
                             'sellers' => [
@@ -147,49 +147,49 @@ class Api_HotelController extends AbstractController
 
 
                 }
-               //$hotels[$hotel['hotelName']] = array_values($hotels[$hotel['hotelName']]);
-              //  $hotels = array_values($hotels);
+                //$hotels[$hotel['hotelName']] = array_values($hotels[$hotel['hotelName']]);
+                //  $hotels = array_values($hotels);
                 //$hotels = array_values($hotels);
 //                $hotels = array_values($hotels);
 
                 //2éme méthode
 
-              /*  foreach ($data['response'] as $dataIndex) {
-                    $hotel = $dataIndex['hotelName'];
+                /*  foreach ($data['response'] as $dataIndex) {
+                      $hotel = $dataIndex['hotelName'];
 
-                    // Vérifier si l'hôtel existe déjà dans le tableau des hôtels
-                    $existingHotel = array_filter($hotels, function ($value) use ($hotel) {
-                        return $value['hotel']['hotelName'] === $hotel;
-                    });
+                      // Vérifier si l'hôtel existe déjà dans le tableau des hôtels
+                      $existingHotel = array_filter($hotels, function ($value) use ($hotel) {
+                          return $value['hotel']['hotelName'] === $hotel;
+                      });
 
-                    if (!empty($existingHotel)) {
-                        // Ajouter le vendeur à l'hôtel existant
-                        $existingHotel[key($existingHotel)]['sellers'][] = $seller['seller'];
-                    } else {
-                        // Créer un nouvel hôtel et ajouter le vendeur
-                        $hotels[] = [
-                            'hotel' => $dataIndex,
-                            'sellers' => $seller['seller']
-                        ];
-                    }
-                }*/
+                      if (!empty($existingHotel)) {
+                          // Ajouter le vendeur à l'hôtel existant
+                          $existingHotel[key($existingHotel)]['sellers'][] = $seller['seller'];
+                      } else {
+                          // Créer un nouvel hôtel et ajouter le vendeur
+                          $hotels[] = [
+                              'hotel' => $dataIndex,
+                              'sellers' => $seller['seller']
+                          ];
+                      }
+                  }*/
 
                 //end methode
-                    /*foreach ($data['response'] as $dataindex){
-                      //  dd($dataindex);
-                      //  $hotel =$dataindex['hotelName'];
-                        if (in_array($dataindex, $data['response'])) {
-                            $hotels[] = ['seller' => $seller['seller']];// Ajouter le vendeur aux résultats
-                        } else {
-                            $hotels[] =  ['seller' => $seller['seller'] ,'hotel'=> $dataindex];
-                           // $hotels[] = $dataindex; // Ajouter l'hôtel au tableau des hôtels
-                        }*/
-                      //  $results[] = ['seller' => $seller['seller'], 'data' =>['hotel'=> $dataindex]];
-                   //}
+                /*foreach ($data['response'] as $dataindex){
+                  //  dd($dataindex);
+                  //  $hotel =$dataindex['hotelName'];
+                    if (in_array($dataindex, $data['response'])) {
+                        $hotels[] = ['seller' => $seller['seller']];// Ajouter le vendeur aux résultats
+                    } else {
+                        $hotels[] =  ['seller' => $seller['seller'] ,'hotel'=> $dataindex];
+                       // $hotels[] = $dataindex; // Ajouter l'hôtel au tableau des hôtels
+                    }*/
+                //  $results[] = ['seller' => $seller['seller'], 'data' =>['hotel'=> $dataindex]];
+                //}
                 // $results[] = ['seller' => $seller['seller'], 'data' => $data];
-            //  $results[] = ['seller' => $seller['seller'], 'data' => $data['response']];
-           //    if()
-              //  $results[] = ['seller' => $seller['seller']];
+                //  $results[] = ['seller' => $seller['seller'], 'data' => $data['response']];
+                //    if()
+                //  $results[] = ['seller' => $seller['seller']];
 
             },
             'rejected' => function ($reason, $index) {
@@ -207,28 +207,28 @@ class Api_HotelController extends AbstractController
     //end 1ème méthode
     //2ème méthode
     // Créer un tableau de promesses pour chaque requête
- /*      $promises = [];
-        foreach ($requests as $request) {
-            $promises[] = $guzzleClient->sendAsync($request);
-        }
+    /*      $promises = [];
+           foreach ($requests as $request) {
+               $promises[] = $guzzleClient->sendAsync($request);
+           }
 
-        // Attendre que toutes les promesses soient résolues
-        $results = [];
-        $resultsPromise = Promise\all($promises)->then(
-            function ($responses) use (&$results) {
-                foreach ($responses as $response) {
-                    $data = json_decode($response->getBody()->getContents(), true);
-                    $results[] = $data;
-                }
-            }
-        );
-        $resultsPromise->wait();
+           // Attendre que toutes les promesses soient résolues
+           $results = [];
+           $resultsPromise = Promise\all($promises)->then(
+               function ($responses) use (&$results) {
+                   foreach ($responses as $response) {
+                       $data = json_decode($response->getBody()->getContents(), true);
+                       $results[] = $data;
+                   }
+               }
+           );
+           $resultsPromise->wait();
 
-        return $this->json($results, 200);
-    }*/
+           return $this->json($results, 200);
+       }*/
     //fin 2ème méthode
 
-/*previousCode*/
+    /*previousCode*/
 
 //#[Route('/getApiHotel', name: 'ApiHotel_list', methods: ['GET','POST'])]
 //    public function getApi_hotel2(Request $request,SerializerInterface $serializer, SellerOfferRepository $sellerOfferRepository):Response

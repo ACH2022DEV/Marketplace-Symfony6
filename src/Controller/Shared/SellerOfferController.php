@@ -102,28 +102,28 @@ class SellerOfferController extends AbstractController
         $data = json_decode($serializedSellerOffers, true);
 //        dd(  $data);
 
-       /* foreach ($data as $item) {
-            $offerProductTypes = $item['offer']['offerProductTypes'];
-            foreach ($offerProductTypes as $offerProductType) {
-                $id = $offerProductType['id'];
-                $productType = $offerProductType['productType']['name'];
+        /* foreach ($data as $item) {
+             $offerProductTypes = $item['offer']['offerProductTypes'];
+             foreach ($offerProductTypes as $offerProductType) {
+                 $id = $offerProductType['id'];
+                 $productType = $offerProductType['productType']['name'];
 
-                //dd($hotelsProductTypes);
-                $maxItems = $offerProductType['maxItems'];
-                $price = $offerProductType['price'];
-                // Faites quelque chose avec les données récupérées, comme les afficher ou les enregistrer dans une base de données
-            }
-        }*/
-       // dd( $id);
-      /*  $offerProductTypes = $offer['offerProductTypes'];
-        $hotelsProductTypes = array_filter($offerProductTypes, function($productType) {
-            return $productType['productType']['name'] == 'hotels';
-        });
-        if (!empty($hotelsProductTypes)) {
-            // Afficher l'offre pour les hotels
-        }*/
+                 //dd($hotelsProductTypes);
+                 $maxItems = $offerProductType['maxItems'];
+                 $price = $offerProductType['price'];
+                 // Faites quelque chose avec les données récupérées, comme les afficher ou les enregistrer dans une base de données
+             }
+         }*/
+        // dd( $id);
+        /*  $offerProductTypes = $offer['offerProductTypes'];
+          $hotelsProductTypes = array_filter($offerProductTypes, function($productType) {
+              return $productType['productType']['name'] == 'hotels';
+          });
+          if (!empty($hotelsProductTypes)) {
+              // Afficher l'offre pour les hotels
+          }*/
         // Retourne la réponse JSON
-       // return $this->json($data, 200);
+        // return $this->json($data, 200);
         return $this->json($data, 200);
     }
     //end new method

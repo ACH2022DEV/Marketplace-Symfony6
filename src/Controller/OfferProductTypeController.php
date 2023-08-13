@@ -37,14 +37,14 @@ class OfferProductTypeController extends AbstractController
     public function new(Request $request, OfferProductTypeRepository $offerProductTypeRepository): Response
     {
         $offerProductType = new OfferProductType();
-      //  $productType = new ProductType();
+        //  $productType = new ProductType();
         $form = $this->createForm(OfferProdType::class, $offerProductType );
         //$form = $this->createForm(ProductType::class, $productType  );
         $form->handleRequest($request);
 //&& $form2->isSubmitted() && $form2->isValid()
         if ($form->isSubmitted() && $form->isValid() )  {
             $offerProductTypeRepository->save($offerProductType, true);
-          //  $ProductTypeRepository->save($productType, true);
+            //  $ProductTypeRepository->save($productType, true);
             return $this->redirectToRoute('app_offer_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
