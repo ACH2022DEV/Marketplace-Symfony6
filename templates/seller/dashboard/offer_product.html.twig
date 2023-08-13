@@ -1,0 +1,159 @@
+{% extends 'seller/base_seller.html.twig' %}
+
+{% block container %}
+
+
+
+<!-- Common Banner Area -->
+<section id="common_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="common_bannner_text">
+                    <h2>Hotel search result</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span><i class="fas fa-circle"></i></span> Hotel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Area -->
+
+<!-- Hotel Search Areas -->
+<section id="explore_area" class="section_padding">
+    <div class="container">
+        <!-- Section Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section_heading_center">
+
+                </div>
+            </div>
+        </div>
+        <div></div>
+        <div class="row">
+
+
+            <div class="col-lg-3">
+
+                    <div class="left_side_search_boxed">
+                        <div class="left_side_search_heading">
+                            <h5>Hotel service</h5>
+                        </div>
+                        <div class="tour_search_type">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt1">
+                                <label class="form-check-label" for="flexCheckDefaultt1">
+                                        <span class="area_flex_one">
+                                            <span>Gymnasium</span>
+                                            <span>20</span>
+                                        </span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt2">
+                                <label class="form-check-label" for="flexCheckDefaultt2">
+                                        <span class="area_flex_one">
+                                            <span>Mountain Bike</span>
+                                            <span>14</span>
+                                        </span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt3">
+                                <label class="form-check-label" for="flexCheckDefaultt3">
+                                        <span class="area_flex_one">
+                                            <span>Wifi</span>
+                                            <span>62</span>
+                                        </span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt4">
+                                <label class="form-check-label" for="flexCheckDefaultt4">
+                                        <span class="area_flex_one">
+                                            <span>Aerobics Room</span>
+                                            <span>08</span>
+                                        </span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultt5">
+                                <label class="form-check-label" for="flexCheckDefaultt5">
+                                        <span class="area_flex_one">
+                                            <span>Golf Cages</span>
+                                            <span>12</span>
+                                        </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+
+
+{#                {% set productCount = 0 %}#}
+                <div class="row">
+
+                    {% for offer in offer.offerProductTypes%}
+                       {# <form action="{{ path('Add_Seller_Offer', {'id': offer.id}) }}" method="POST">
+                            <button type="submit" class="btn btn-primary my-1">Ajouter au panier</button>
+                        </form>#}
+                       {# {% if offer.price >= app.request.query.get('minPrice')|default(0) and offerProductType.price <= app.request.query.get('maxPrice')|default(100) %}
+                            {% set productCount = productCount + 1 %}#}
+                            {#                                {{ productType.offerProductTypes.length }}#}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="theme_common_box_two">
+                                    <div class="theme_two_box_img">
+                                        <a href="{{ path('app_offerProductTypes_ForSeller', {'id': offer.id}) }}"><img src="{{ asset('assets/images/tab-img/hotel1.png') }}" alt="img"></a>
+                                        <p><i class="fas fa-map-marker-alt"></i>New beach, Thailand</p>
+                                    </div>
+                                    <div class="theme_two_box_content">
+                                        <h4><a href="">Kantua hotel, Thailand</a></h4>
+                                        <h1>{{ offer.id }}</h1>
+{#                                        <h1>{{ offer. }}</h1>#}
+{#                                        <p><span>nbProductTypes : </span>{{ offer }} <span class="review_count"></span></p>#}
+                                        <span>price : </span><h3>{{ offer.price }} </h3>
+
+                                    </div>
+                                </div>
+                            </div>
+{#                        {% endif %}#}
+                    {% endfor %}
+{#                    <h2>{{productCount }} hotel found</h2>#}
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="pagination_area">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
