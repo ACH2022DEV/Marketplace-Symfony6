@@ -30,12 +30,20 @@ class DashboardController extends AbstractController
     //, IsGranted('ROLE_SELLER')]
     public function index(Request $request, Security $security): Response
     {
+<<<<<<< HEAD
         //  $session = $this->requestStack->getSession();
+=======
+      //  $session = $this->requestStack->getSession();
+>>>>>>> origin/main
         $session = $request->getSession();
 
         if ( $session->isStarted()) {
             //$userId= $session->get('id');
+<<<<<<< HEAD
             //   $userId = $session->get('_security_main');
+=======
+         //   $userId = $session->get('_security_main');
+>>>>>>> origin/main
             //$userId = $event->getAuthenticationToken()->getUser();
             $user = $this->security->getUser();
             $userId = $user->getId();
@@ -48,7 +56,11 @@ class DashboardController extends AbstractController
             // $session->set('id', '555');
 
             //   $userId = $request->getSession()->get('id');
+<<<<<<< HEAD
             //  $user = $this->getUser('security.token_storage')->getToken()->getUser();
+=======
+          //  $user = $this->getUser('security.token_storage')->getToken()->getUser();
+>>>>>>> origin/main
             //$userId = $request->getSession()->get('_security_main')->get('id');
 
             /*  $seller = $this->em->getRepository(Seller::class)
@@ -59,6 +71,7 @@ class DashboardController extends AbstractController
 
         //if(!$session->has('menu')){ // Uncomment to get menu from session if exists.
         //commenter pour ce moment pour l'affichage de design
+<<<<<<< HEAD
         /*  if($this->isGranted('ROLE_SELLER')) {
               $menu_object = $this->menuItemSellerRepository->findBy([], ['displayOrder' => 'ASC']);
               $menu = $this->helpers->convert_ObjectArray_to_2DArray($menu_object);
@@ -68,11 +81,26 @@ class DashboardController extends AbstractController
           $menu_as_tree = $this->helpers->buildTree($menu);
           if(array_key_exists('ADMIN', $menu_as_tree))
               $session->set('menu' , $menu_as_tree['ADMIN']['children']);*/
+=======
+          /*  if($this->isGranted('ROLE_SELLER')) {
+                $menu_object = $this->menuItemSellerRepository->findBy([], ['displayOrder' => 'ASC']);
+                $menu = $this->helpers->convert_ObjectArray_to_2DArray($menu_object);
+            }else{ // ROLE_ADMIN
+                $menu = $this->menuItemSellerRepository->find_innerJoin();
+            }
+            $menu_as_tree = $this->helpers->buildTree($menu);
+            if(array_key_exists('ADMIN', $menu_as_tree))
+                $session->set('menu' , $menu_as_tree['ADMIN']['children']);*/
+>>>>>>> origin/main
         //}
         return $this->render('seller/dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'seller' => $seller2,
+<<<<<<< HEAD
             'userId' => $userId
+=======
+              'userId' => $userId
+>>>>>>> origin/main
         ]);
     }
 }

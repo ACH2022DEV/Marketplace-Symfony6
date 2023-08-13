@@ -8,7 +8,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+<<<<<<< HEAD
 #[ORM\Entity(repositoryClass: OfferProductTypeRepository::class)]
+=======
+ #[ORM\Entity(repositoryClass: OfferProductTypeRepository::class)]
+>>>>>>> origin/main
 
 class OfferProductType
 {
@@ -54,6 +58,7 @@ class OfferProductType
         return $this;
     }
 
+<<<<<<< HEAD
     /*  public function getProductTypeidProductType(): ?ProductType
       {
           return $this->productType;
@@ -68,19 +73,46 @@ class OfferProductType
 
 
     public function getProductType(): ?ProductType
+=======
+  /*  public function getProductTypeidProductType(): ?ProductType
+>>>>>>> origin/main
     {
         return $this->productType;
     }
 
+<<<<<<< HEAD
     public function setProductType( ?ProductType $productType): self
+=======
+    public function setProductTypeidProductType(?ProductType $productType): self
+>>>>>>> origin/main
     {
         $this->productType = $productType;
 
         return $this;
+<<<<<<< HEAD
     }
 
 
     public function getMaxItems(): ?string
+=======
+    }*/
+
+
+     public function getProductType(): ?ProductType
+     {
+         return $this->productType;
+     }
+
+     public function setProductType( ?ProductType $productType): self
+     {
+         $this->productType = $productType;
+
+         return $this;
+     }
+
+
+     public function getMaxItems(): ?string
+>>>>>>> origin/main
     {
         return $this->maxItems;
     }
@@ -103,6 +135,7 @@ class OfferProductType
 
         return $this;
     }
+<<<<<<< HEAD
     public function __toString(): string
     {
         $m = "*".'product type: '. $this->getProductType()->getName()."\n".
@@ -112,4 +145,15 @@ class OfferProductType
         return $m;
         // TODO: Implement __toString() method.
     }
+=======
+     public function __toString(): string
+     {
+         $m = "*".'product type: '. $this->getProductType()->getName()."\n".
+             'max items: '.$this->getMaxItems()."\r\n".
+             'price'.$this->getPrice()."\r\n";
+
+         return $m;
+         // TODO: Implement __toString() method.
+     }
+>>>>>>> origin/main
 }

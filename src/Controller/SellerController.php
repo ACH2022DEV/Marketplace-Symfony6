@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\ApiProduct;
 use App\Entity\MarketSubscriptionRequest;
 use App\Entity\Offer;
-use App\Entity\OfferProductType;
 use App\Entity\Seller;
 use App\Entity\SellerOffer;
 use App\Entity\User;
@@ -55,7 +54,6 @@ class SellerController extends AbstractController
         $this->em=$doctrine;
         $this->sellerOfferRepository = $sellerOfferRepository;
         $this->sellerRepository = $sellerRepository;
-
 
 
     }
@@ -141,8 +139,8 @@ class SellerController extends AbstractController
             $sellerRepository->save($seller, true);
 
 
-            //  $onCreateSellerEvent = new SellerCreatedEvent($seller, $password);
-            //  $dispatcher->dispatch($onCreateSellerEvent);
+          //  $onCreateSellerEvent = new SellerCreatedEvent($seller, $password);
+          //  $dispatcher->dispatch($onCreateSellerEvent);
 
             return $this->redirectToRoute('app_seller_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -169,16 +167,16 @@ class SellerController extends AbstractController
 
     //add an new page for Edit_seller
 
-    /* #[Route('/editProfileU', name: 'app_seller_dashboardEdit', methods: ['GET', 'POST'])]
-     public function editProfile(): Response
-     {
-        // $seller = $this->getUser();
+   /* #[Route('/editProfileU', name: 'app_seller_dashboardEdit', methods: ['GET', 'POST'])]
+    public function editProfile(): Response
+    {
+       // $seller = $this->getUser();
 
-         return $this->render('seller/edit.html.twig', [
-           //  'seller' => $seller,
-            // 'form' => $form
-         ]);
-     }*/
+        return $this->render('seller/edit.html.twig', [
+          //  'seller' => $seller,
+           // 'form' => $form
+        ]);
+    }*/
 
     //en of add new page for edit
 //add a controller for seller_Profile and sellerBooking_history
@@ -198,7 +196,7 @@ class SellerController extends AbstractController
 
 
 
-        //  $sellerOffers = // Récupérez vos offres de vendeurs à partir de votre base de données
+      //  $sellerOffers = // Récupérez vos offres de vendeurs à partir de votre base de données
 
         $totalOffers = count($sellerOffers);
 
@@ -207,11 +205,11 @@ class SellerController extends AbstractController
         return $this->render('seller/booking_seller_History.html.twig', [
             'seller' => $seller,
 
-            //  'sellerOffers' => to($sellerOffers->getValues(), $offset, $limit),
+          //  'sellerOffers' => to($sellerOffers->getValues(), $offset, $limit),
             //'sellerOffers' => array_slice($sellerOffers->getValues(), $offset, $limit),
             //'sellerOffers' => array_slice($sellerOffers->toArray(), $offset, $limit),
             //'sellerOffers' => array_slice($sellerOffers->slice($offset), $limit),
-            'sellerOffers' => array_slice($sellerOffers->getValues(),$offset, $limit),
+              'sellerOffers' => array_slice($sellerOffers->getValues(),$offset, $limit),
             'page' => $page,
             'limit' => $limit,
             'totalPages' => $totalPages,
@@ -289,11 +287,9 @@ class SellerController extends AbstractController
         $user = $this->security->getUser();
         $userId = $user->getId();
         $session = $request->getSession();
-        $panier = $session->get('panier');
         $seller = $this->em->getRepository(Seller::class)->findSellerByUserId($userId);
         return $this->render('seller/commandeConfirmation.html.twig', [
             'seller' => $seller,
-            'panier' => $panier
         ]);
     }
 
@@ -303,23 +299,23 @@ class SellerController extends AbstractController
 
 //
 //add images to seller
-    /* #[Route('/{id}/edit', name: 'app_seller_edit', methods: ['GET', 'POST'])]
-     public function edit(Request $request, Seller $seller, SellerRepository $sellerRepository): Response
-     {
-         $form = $this->createForm(SellerType::class, $seller);
-         $form->handleRequest($request);
+   /* #[Route('/{id}/edit', name: 'app_seller_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Seller $seller, SellerRepository $sellerRepository): Response
+    {
+        $form = $this->createForm(SellerType::class, $seller);
+        $form->handleRequest($request);
 
-         if ($form->isSubmitted() && $form->isValid()) {
-             $sellerRepository->save($seller, true);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sellerRepository->save($seller, true);
 
-             return $this->redirectToRoute('app_seller_index', [], Response::HTTP_SEE_OTHER);
-         }
+            return $this->redirectToRoute('app_seller_index', [], Response::HTTP_SEE_OTHER);
+        }
 
-         return $this->renderForm('seller/edit.html.twig', [
-             'seller' => $seller,
-             'form' => $form,
-         ]);
-     }*/
+        return $this->renderForm('seller/edit.html.twig', [
+            'seller' => $seller,
+            'form' => $form,
+        ]);
+    }*/
 
 
     //add a uploader images:
@@ -396,20 +392,20 @@ class SellerController extends AbstractController
 
 
 // ajouterAuPanier
-    /*  #[Route('/{id}/AddSellerOffer1', name: 'Add_Seller_Offer2', methods: ['POST'])]
-      public function ajouterAuPanier1(Request $request, Security $security): Response
-      {
-          $user = $this->security->getUser();
-          $userId = $user->getId();
-          $session = $request->getSession();
-          if (!$user) {
-              // L'utilisateur n'est pas authentifié, redirection vers la page de connexion
-              return $this->render('shared/login/login_Seller.html.twig');
-          }
-          return $this->render('seller/show.html.twig', [
-            //  'seller' => $seller,
-          ]);
-      }*/
+  /*  #[Route('/{id}/AddSellerOffer1', name: 'Add_Seller_Offer2', methods: ['POST'])]
+    public function ajouterAuPanier1(Request $request, Security $security): Response
+    {
+        $user = $this->security->getUser();
+        $userId = $user->getId();
+        $session = $request->getSession();
+        if (!$user) {
+            // L'utilisateur n'est pas authentifié, redirection vers la page de connexion
+            return $this->render('shared/login/login_Seller.html.twig');
+        }
+        return $this->render('seller/show.html.twig', [
+          //  'seller' => $seller,
+        ]);
+    }*/
     #[Route('/seller/{id}/AddSellerOffer', name: 'Add_Seller_Offer', methods: ['POST'])]
     public function ajouterAuPanier(Request $request, Security $security): Response
     {
@@ -422,7 +418,7 @@ class SellerController extends AbstractController
         $id = $request->attributes->get('id');
         $offer = $this->em->getRepository(Offer::class)->find($id);
 
-        // $StartDate=new DateTime();
+      // $StartDate=new DateTime();
 
         $isAlreadyInCart = false;
         foreach ($panier as $item) {
@@ -431,7 +427,7 @@ class SellerController extends AbstractController
                 break;
             }
         }
-        $offerProductTypes = $offer->getOfferProductTypes();
+
         if ($isAlreadyInCart) {
             return $this->redirectToRoute('app_offer_seller', [], Response::HTTP_SEE_OTHER);
         } else {
@@ -441,32 +437,30 @@ class SellerController extends AbstractController
 
 
         return $this->render('seller/panier_Seller.html.twig', [
-            'seller' => $seller,
+              'seller' => $seller,
             'session'=> $session,
             'userId'=>$userId,
-            'offerProductTypes' => $offerProductTypes,
-
         ]);
 
     }
 
     //fin ajouterAuPanier
-    /*  public function getOffersTotalPrice( Request $request,OfferRepository $offerRepository): array
-      {
-          $session = $request->getSession();
-          $offersTotalPrice = [];
-          $panier = $session->get('panier');
-          foreach ($panier as $offerId) {
-              $offer = $offerRepository->find($offerId);
-              $offerProductTypes = $offer->getOfferProductTypes();
-              $totalPrice = 0.0;
-              foreach ($offerProductTypes as $offerProductType) {
-                  $totalPrice += $offerProductType->getPrice();
-              }
-              $offersTotalPrice[] = ['id' => $offerId, 'totalPrice' => $totalPrice];
-          }
-          return $offersTotalPrice;
-      }*/
+  /*  public function getOffersTotalPrice( Request $request,OfferRepository $offerRepository): array
+    {
+        $session = $request->getSession();
+        $offersTotalPrice = [];
+        $panier = $session->get('panier');
+        foreach ($panier as $offerId) {
+            $offer = $offerRepository->find($offerId);
+            $offerProductTypes = $offer->getOfferProductTypes();
+            $totalPrice = 0.0;
+            foreach ($offerProductTypes as $offerProductType) {
+                $totalPrice += $offerProductType->getPrice();
+            }
+            $offersTotalPrice[] = ['id' => $offerId, 'totalPrice' => $totalPrice];
+        }
+        return $offersTotalPrice;
+    }*/
     //afficher le panier d'un utilisateur
     #[Route('/seller/MonPanier', name: 'Get_Seller_Panier', methods: ['GET'])]
     public function getPanier(Request $request, Security $security): Response
@@ -479,17 +473,17 @@ class SellerController extends AbstractController
         $totalPrice = 0.0;
         $panier = $session->get('panier');
         if($panier){
-            foreach ($panier as $offer) {
-                $offerId = $offer->getId();
-                $offerRepo = $this->em->getRepository(Offer::class);
-                $offer = $offerRepo->find($offerId);
-                $offerProductTypes = $offer->getOfferProductTypes();
-                $offerPriceTotal = 0.0;
-                foreach ($offerProductTypes as $offerProductType) {
-                    $offerPriceTotal += $offerProductType->getPrice();
-                }
-                $totalPrice += $offerPriceTotal;
+        foreach ($panier as $offer) {
+            $offerId = $offer->getId();
+            $offerRepo = $this->em->getRepository(Offer::class);
+            $offer = $offerRepo->find($offerId);
+            $offerProductTypes = $offer->getOfferProductTypes();
+            $offerPriceTotal = 0.0;
+            foreach ($offerProductTypes as $offerProductType) {
+                $offerPriceTotal += $offerProductType->getPrice();
             }
+            $totalPrice += $offerPriceTotal;
+        }
         }
 //        foreach ($panier as $offer) {
 //            $offerId = $this->em->getRepository(Offer::class)->find($offer);
@@ -498,29 +492,7 @@ class SellerController extends AbstractController
 
 
         //add a methode
-        //fin méthode
-        $totals = [];
-        if ($panier) {
-            foreach ($panier as $offerId => $item) {
-                $offer = $this->em->getRepository(Offer::class)->find($offerId);
-
-                if ($offer) {
-                    $totalPrice = 0.0;
-
-                    foreach ($item['offerProductTypes'] as $offerProductType) {
-                        $opt = $this->em->getRepository(OfferProductType::class)->find($offerProductType['id']);
-
-                        if ($opt) {
-                            $totalPrice += $opt->getPrice();
-                        }
-                    }
-
-                    $totals[$offerId] = $totalPrice;
-
-                }
-            }
-        }
-        $session->set('totals', $totals);
+       //fin méthode
         $panier = $session->get('panier');
 //        foreach ($panier as $offerId) {
 //            $offer = $this->em->getRepository(Offer::class)->find($offerId);
@@ -532,24 +504,22 @@ class SellerController extends AbstractController
 //                $totalPrice += $offerProductType->getPrice();
 //            }
 
-        // Utilisez la méthode map() pour obtenir une collection de prix pour chaque OfferProductType.
+            // Utilisez la méthode map() pour obtenir une collection de prix pour chaque OfferProductType.
 //            $prices = $offerProductTypes->map(function($offerProductType) {
 //                return $offerProductType->getPrice();
 //            });
-        // Utilisez la méthode sum() pour calculer la somme des prix.
-        // $totalPrice = $prices->map();
+            // Utilisez la méthode sum() pour calculer la somme des prix.
+           // $totalPrice = $prices->map();
 
-        // Faites quelque chose avec le prix total...
-        //  }
+            // Faites quelque chose avec le prix total...
+      //  }
 
         //end of total
         return $this->render('seller/panier_Seller.html.twig', [
-            'seller' => $seller,
+        'seller' => $seller,
             'session'=> $session,
             'userId'=>$userId,
-            'totalPrice'=> $totalPrice,
-            'panier' => $panier,
-            'totals' => $totals,
+            'totalPrice'=> $totalPrice
 
         ]);
     }
@@ -579,60 +549,60 @@ class SellerController extends AbstractController
     }
 
     //
-    /* #[Route('/{id}/RemoveOffer', name: 'delete_sellerOffer', methods: ['POST'])]
-     public function removeOfferFromCart(Request $request, Security $security): Response
-     {
-         $user = $security->getUser();
-         $userId = $user->getId();
-         $session = $request->getSession();
-         $id = $request->attributes->get('id');
-         $offer = $this->em->getRepository(Offer::class)->find($id);
-         $panier = $session->get('panier') ?? new ArrayCollection();
+   /* #[Route('/{id}/RemoveOffer', name: 'delete_sellerOffer', methods: ['POST'])]
+    public function removeOfferFromCart(Request $request, Security $security): Response
+    {
+        $user = $security->getUser();
+        $userId = $user->getId();
+        $session = $request->getSession();
+        $id = $request->attributes->get('id');
+        $offer = $this->em->getRepository(Offer::class)->find($id);
+        $panier = $session->get('panier') ?? new ArrayCollection();
 
-         $indexToRemove = null;
-         foreach ($panier as $index => $item) {
-             if ($item === $offer) {
-                 $indexToRemove = $index;
-                 break;
-             }
-         }
+        $indexToRemove = null;
+        foreach ($panier as $index => $item) {
+            if ($item === $offer) {
+                $indexToRemove = $index;
+                break;
+            }
+        }
 
-         if ($indexToRemove !== null) {
-             $panier->removeElement($offer);
-            // $panier->removeElement()
-             $session->set('panier', $panier);
-         }
+        if ($indexToRemove !== null) {
+            $panier->removeElement($offer);
+           // $panier->removeElement()
+            $session->set('panier', $panier);
+        }
 
-         return $this->redirectToRoute('Get_Seller_Panier', [], Response::HTTP_SEE_OTHER);
-     }*/
+        return $this->redirectToRoute('Get_Seller_Panier', [], Response::HTTP_SEE_OTHER);
+    }*/
     //Validation d'un commande
 
-    #[Route('/seller/ValiderCommande', name: 'app_seller_validationPanier', methods: ['GET', 'POST'])]
+   #[Route('/seller/ValiderCommande', name: 'app_seller_validationPanier', methods: ['GET', 'POST'])]
     public function validerCommande(Request $request,Security $security,SellerOfferRepository $sellerOfferRepository ): Response
     {
 
-        /* //ajouter le formulaire de sellersOffers
-         $sellerOffer = new SellerOffer();
-         $form = $this->createForm(SellerOfferType::class, $sellerOffer);
-         $form->handleRequest($request);
+       /* //ajouter le formulaire de sellersOffers
+        $sellerOffer = new SellerOffer();
+        $form = $this->createForm(SellerOfferType::class, $sellerOffer);
+        $form->handleRequest($request);
 
-         if ($form->isSubmitted() && $form->isValid()) {
-             $sellerOfferRepository->save($sellerOffer, true);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sellerOfferRepository->save($sellerOffer, true);
 
-             return $this->redirectToRoute('app_seller_offer_index', [], Response::HTTP_SEE_OTHER);
-         }
+            return $this->redirectToRoute('app_seller_offer_index', [], Response::HTTP_SEE_OTHER);
+        }
 
-         //fin sellersOffers
-         $user = $this->security->getUser();
-         $userId = $user->getId();
-         $session = $request->getSession();
-         $seller = $this->em->getRepository(Seller::class)->findSellerByUserId($userId);*/
+        //fin sellersOffers
+        $user = $this->security->getUser();
+        $userId = $user->getId();
+        $session = $request->getSession();
+        $seller = $this->em->getRepository(Seller::class)->findSellerByUserId($userId);*/
         return $this->render('seller/show.html.twig', [
-            /* 'seller' => $seller,
-             'session'=> $session,
-             'userId'=>$userId,
-             'form' => $form,
-             'seller_offer' => $sellerOffer,*/
+           /* 'seller' => $seller,
+            'session'=> $session,
+            'userId'=>$userId,
+            'form' => $form,
+            'seller_offer' => $sellerOffer,*/
         ]);
     }
     //fin Validation d'un commande
@@ -649,7 +619,7 @@ class SellerController extends AbstractController
             throw new \Exception("No seller found for user with ID $userId");
         }
 
-        // var_dump($seller->getId());
+       // var_dump($seller->getId());
 
         $session = $request->getSession();
 
@@ -659,13 +629,13 @@ class SellerController extends AbstractController
 
         foreach ($panier as $offer) {
             //pour ajouter just le jour sans minutes
-            /*  $formBuilder>add('startDate_' . $offer->getId(), DateType::class, [
-                  'label' => $offer->getName(),
-                  'widget' => 'single_text',
-                  'html5' => true,
-                  'attr' => ['class' => 'datepicker'],
-                  'data' => new \DateTime(),
-              ]);*/
+          /*  $formBuilder>add('startDate_' . $offer->getId(), DateType::class, [
+                'label' => $offer->getName(),
+                'widget' => 'single_text',
+                'html5' => true,
+                'attr' => ['class' => 'datepicker'],
+                'data' => new \DateTime(),
+            ]);*/
             $formBuilder->add('startDate_' . $offer->getId(), DateTimeType::class, [
                 'label' => $offer->getName(),
                 'widget' => 'single_text',
@@ -695,7 +665,7 @@ class SellerController extends AbstractController
 
                 $entityManager->persist($sellerOffer);
 
-                //  $entityManager->remove($offer);
+              //  $entityManager->remove($offer);
 
             }
             $entityManager->flush();
@@ -726,7 +696,7 @@ class SellerController extends AbstractController
         // file name from database
         $filePath = $this->getParameter('brochures_directory').'/'.$request->query->get('filename');
         // check if there is filepath or not
-        $path = (file_exists($filePath)) ? $filePath : $this->getParameter('brochures_directory2').'/error/agency.png';
+        $path = (file_exists($filePath)) ? $filePath : $this->getParameter('brochures_directory2').'/error/avatar.png';
         // Create a response object with the file data
         $response = new BinaryFileResponse($path);
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
@@ -763,28 +733,28 @@ class SellerController extends AbstractController
      }*/
 //end images
 
-    /* #[Route('/getImages', name: 'app_seller_Images', methods: ['GET'])]
-     public function getImage(Request $request): JsonResponse
-     {
-         $filename = $request->query->get('filename');
+   /* #[Route('/getImages', name: 'app_seller_Images', methods: ['GET'])]
+    public function getImage(Request $request): JsonResponse
+    {
+        $filename = $request->query->get('filename');
 
-         // search for the seller entity with the matching brochureFilename
-         $seller = $this->getDoctrine()->getRepository(Seller::class)->findOneBy(['brochureFilename' => $filename]);
+        // search for the seller entity with the matching brochureFilename
+        $seller = $this->getDoctrine()->getRepository(Seller::class)->findOneBy(['brochureFilename' => $filename]);
 
-         if (!$seller) {
-             return $this->json(['error' => 'Seller not found'], 404);
-         }
+        if (!$seller) {
+            return $this->json(['error' => 'Seller not found'], 404);
+        }
 
-         // get the full path of the image file
-         $filePath = $this->getParameter('brochures_directory').'/brochures/'.$seller->getBrochureFilename();
+        // get the full path of the image file
+        $filePath = $this->getParameter('brochures_directory').'/brochures/'.$seller->getBrochureFilename();
 
-         // check if the file exists
-         if (!file_exists($filePath)) {
-             $filePath = $this->getParameter('brochures_directory').'/error/avatar.png';
-         }
+        // check if the file exists
+        if (!file_exists($filePath)) {
+            $filePath = $this->getParameter('brochures_directory').'/error/avatar.png';
+        }
 
-         // create a response object with the file data
-         return $this->json(new BinaryFileResponse($filePath));
-     }*/
+        // create a response object with the file data
+        return $this->json(new BinaryFileResponse($filePath));
+    }*/
 
 }

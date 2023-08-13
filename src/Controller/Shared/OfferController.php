@@ -6,10 +6,14 @@ use App\Entity\Offer;
 use App\Entity\Seller;
 use App\Entity\SellerOffer;
 use App\Form\OfferType;
+<<<<<<< HEAD
 use App\Repository\OfferProductTypeRepository;
 use App\Repository\OfferRepository;
 use App\Repository\ProductTypeRepository;
 use App\Repository\SellerOfferRepository;
+=======
+use App\Repository\OfferRepository;
+>>>>>>> origin/main
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +41,7 @@ class OfferController extends AbstractController
     }
     //add an offer controller
     #[Route('/getAllOffers', name: 'app_offer_seller', methods: ['GET'])]
+<<<<<<< HEAD
     public function getOffer(OfferRepository $offerRepository, ProductTypeRepository $productTypeRepository): Response
     {
         $offers = $offerRepository->findAll();
@@ -57,10 +62,17 @@ class OfferController extends AbstractController
         return $this->render('seller/dashboard/Hotel.html.twig', [
             'offer' => $offerRepository->findAll(),
             'productType'=> $productTypeRepository->findAll()
+=======
+    public function getOffer(OfferRepository $offerRepository): Response
+    {
+        return $this->render('seller/dashboard/offerList.html.twig', [
+            'offer' => $offerRepository->findAll(),
+>>>>>>> origin/main
         ]);
     }
     //add home Page
     #[Route('/Home', name: 'app_Home_seller', methods: ['GET'])]
+<<<<<<< HEAD
     public function getPageHome(OfferProductTypeRepository $offerProductTypeRepository, SellerOfferRepository $sellerOfferRepository ): Response
     {
 
@@ -70,6 +82,11 @@ class OfferController extends AbstractController
             'offers' => $offers,
             'offerProdType' => $offerProductTypeRepository->findAll(),
             'seller_offers' => $sellers,
+=======
+    public function getPageHome(): Response
+    {
+        return $this->render('seller/dashboard/home_seller.html.twig', [
+>>>>>>> origin/main
             //'offer' => $offerRepository->findAll(),
         ]);
     }
@@ -81,21 +98,36 @@ class OfferController extends AbstractController
         $List_offer=$this->offer->findAll();
         $serializedOffers = $serializer->serialize($List_offer, 'json', ['groups' => 'offer']);
         $data = json_decode($serializedOffers, true);
+<<<<<<< HEAD
         /*    foreach ($data as $item) {
                 echo "Offer Product Types: " . json_encode($item['offerProductTypes']) . PHP_EOL;
                 echo "Seller Offers: " . json_encode($item['sellerOffers']) . PHP_EOL;
             }*/
+=======
+    /*    foreach ($data as $item) {
+            echo "Offer Product Types: " . json_encode($item['offerProductTypes']) . PHP_EOL;
+            echo "Seller Offers: " . json_encode($item['sellerOffers']) . PHP_EOL;
+        }*/
+>>>>>>> origin/main
         return $this->json($data,200);
     }
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OfferRepository $offerRepository): Response
     {
         $offer = new Offer();
+<<<<<<< HEAD
         /* $offerproduct=new OfferProductType();
          $offerproduct->setMaxItems(25);
          $offerproduct->setPrice(255);
 
          $offer->addOfferProductType($offerproduct);*/
+=======
+       /* $offerproduct=new OfferProductType();
+        $offerproduct->setMaxItems(25);
+        $offerproduct->setPrice(255);
+
+        $offer->addOfferProductType($offerproduct);*/
+>>>>>>> origin/main
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -122,6 +154,7 @@ class OfferController extends AbstractController
     #[Route('/{id}/offers', name: 'app_Show_offer_For_seller', methods: ['GET'])]
     public function showOffer(Offer $offer): Response
     {
+<<<<<<< HEAD
         $pricesByOffer = [];
 
         $offers = [$offer]; // Créez un tableau contenant l'offre individuelle passée en paramètre
@@ -132,11 +165,19 @@ class OfferController extends AbstractController
         return $this->render('seller/dashboard/offerList.html.twig', [
             'offer' => $offer,
             'pricesByOffer' => $pricesByOffer,
+=======
+        return $this->render('offer/show.html.twig', [
+            'offer' => $offer,
+>>>>>>> origin/main
         ]);
     }
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
     #[Route('/{id}/edit', name: 'app_offer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Offer $offer, EntityManagerInterface $manager): Response
     {
@@ -198,7 +239,11 @@ class OfferController extends AbstractController
         $offer =  $this->doctrine
             ->getRepository(Offer::class)
             ->find($id);
+<<<<<<< HEAD
         // $offerProductTypes = $offer->getOfferProductTypes();
+=======
+       // $offerProductTypes = $offer->getOfferProductTypes();
+>>>>>>> origin/main
 
         if (!$offer) {
             throw $this->createNotFoundException(
@@ -208,7 +253,11 @@ class OfferController extends AbstractController
 
         return $this->render('offer/show_Offer_Product.html.twig', [
             'offer' => $offer,
+<<<<<<< HEAD
             // 'offerProductTypes' => $offerProductTypes
+=======
+           // 'offerProductTypes' => $offerProductTypes
+>>>>>>> origin/main
 
         ]);
     }
@@ -235,6 +284,7 @@ class OfferController extends AbstractController
 
         ]);
     }
+<<<<<<< HEAD
     #[Route('/offer/{id}/OfferProductsTypesForSeller', name: 'app_offerProductTypes_offer', methods: ['GET'])]
     public function OfferProductTypesForOffer(int $id
         // ,AuthorizationCheckerInterface $authChecker
@@ -260,6 +310,8 @@ class OfferController extends AbstractController
 
         ]);
     }
+=======
+>>>>>>> origin/main
 
 //
     public function __construct(private Security $security,private ManagerRegistry $doctrine,EntityManagerInterface $manager, OfferRepository $offer) {

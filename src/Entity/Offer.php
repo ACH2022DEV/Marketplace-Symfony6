@@ -37,10 +37,14 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: SellerOffer::class, cascade: ['persist','remove'])]
     #[Groups(['offer'])]
     private Collection $sellerOffers;
+<<<<<<< HEAD
     /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $totalPrice;
+=======
+
+>>>>>>> origin/main
     public function __construct()
     {
         $this->offerProductTypes = new ArrayCollection();
@@ -91,11 +95,19 @@ class Offer
     public function addOfferProductType(OfferProductType $offerProductType): self
     {
         if (!$this->offerProductTypes->contains($offerProductType)) {
+<<<<<<< HEAD
             //added in 3/03/2023
             /* $offerProductType->setOffer($this);
              $this->offerProductTypes[] = $offerProductType;*/
             $this->offerProductTypes->add($offerProductType);
             $offerProductType->setOffer($this);
+=======
+           //added in 3/03/2023
+            /* $offerProductType->setOffer($this);
+             $this->offerProductTypes[] = $offerProductType;*/
+           $this->offerProductTypes->add($offerProductType);
+             $offerProductType->setOffer($this);
+>>>>>>> origin/main
         }
 
         return $this;
@@ -142,6 +154,7 @@ class Offer
 
         return $this;
     }
+<<<<<<< HEAD
     public function getTotalPrice(): ?float
     {
         return $this->totalPrice;
@@ -167,18 +180,29 @@ class Offer
         return $this;
     }
 
+=======
+>>>>>>> origin/main
     public function __toString(): string
     {
         // TODO: Implement __toString() method.
         return $this->name;
     }
     //ajouter la méthode de la date de l'Api
+<<<<<<< HEAD
     /* public function getEndDate(): \DateTime
      {
          $endDate = clone $this->
          $endDate->add(new \DateInterval('P' . $this->getNbDays() . 'D'));
          return $endDate;
      }*/
+=======
+   /* public function getEndDate(): \DateTime
+    {
+        $endDate = clone $this->
+        $endDate->add(new \DateInterval('P' . $this->getNbDays() . 'D'));
+        return $endDate;
+    }*/
+>>>>>>> origin/main
 
     //end method
 }
